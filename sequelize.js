@@ -1,19 +1,25 @@
 const Sequelize = require('sequelize')
-const sequelize = new Sequelize('dev', 'root', '123456', {
-  host: 'localhost',
-  dialect: 'mysql',
-  operatorsAliases: false,
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
+const config = require('./database.json')
+const sequelize = new Sequelize( 
+  config.database,
+  config.user,
+  config.password,
+  {
+    port: config.port,
+    host: config.server,
+    dialect: config.driver,
+    // dialectOptions: {
+    //   socketPath: '/tmp/mysql.sock' // 指定套接字文件路径
+    // },
+    define: {
+      timestamps: false
+    }
   }
-})
+)
 sequelize.authenticate().then(() => {
   console.log('。。。 MYSQL 连接成功 。。。')
 }).catch(err => {
-  console.err('... mysql连接失败 ...', err)
+  console.log('... mysql连接失败 ...', err)
 })
 // 根据模型自动创建表
 sequelize.sync()
