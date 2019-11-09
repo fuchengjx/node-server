@@ -1,4 +1,5 @@
 var router = require('koa-router')();
+const User = require('../controllers/user')
 
 router.get('/', function *(next) {
   yield this.render('index', {
@@ -12,10 +13,13 @@ router.get('/foo', function *(next) {
   });
 });
 
-router.get('/user', function *(next) {
-  yield this.render('index', {
-    title: 'this is User'
-  })
-})
+
+router.get('/user', User.list)
+
+// router.get('/user', function *(next) {
+//   yield this.render('index', {
+//     title: 'this is User'
+//   })
+// })
 
 module.exports = router;
