@@ -1,8 +1,14 @@
 const Users = require('../model/user')
 const Sequelize = require('sequelize')
+
 const listAll = async (ctx) => {
   const data = await Users.findAll()
-  
+  ctx.body = {
+    data,
+    code: 1000,
+    desc: 'success'
+  }
+  console.log('this is listAll: ', data)
 }
 const list = async (ctx) => {
   Sequelize.query('desc users').then(res => {
