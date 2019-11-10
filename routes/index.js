@@ -1,25 +1,19 @@
-var router = require('koa-router')();
-const User = require('../controllers/user')
+const router = require('koa-router')()
 
-router.get('/', function *(next) {
-  yield this.render('index', {
-    title: 'Hello World Koa!'
-  });
-});
+router.get('/', async (ctx, next) => {
+  await ctx.render('index', {
+    title: 'Hello Koa 2!'
+  })
+})
 
-router.get('/foo', function *(next) {
-  yield this.render('index', {
-    title: 'Hello World foo!'
-  });
-});
+router.get('/string', async (ctx, next) => {
+  ctx.body = 'koa2 string'
+})
 
+router.get('/json', async (ctx, next) => {
+  ctx.body = {
+    title: 'koa2 json'
+  }
+})
 
-router.get('/user', User.list)
-
-// router.get('/user', function *(next) {
-//   yield this.render('index', {
-//     title: 'this is User'
-//   })
-// })
-
-module.exports = router;
+module.exports = router
