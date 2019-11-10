@@ -5,13 +5,18 @@ const users =  sequelize.define('users', {
   id: {
     type: Sequelize.INTEGER(11), // 设置字段类型
     primaryKey: true, // 设置为主建
-    autoIncrement: true // 自增
+    autoIncrement: true, // 自增
   },
   name: {
     type: Sequelize.STRING,
     unique: { // 唯一
       msg: '已添加'
-    }
+    },
+    defaultValue: 'koa'
+  },
+  password: {
+    type: Sequelize.STRING,
+    defaultValue: '123456'
   },
   desc: {
     type: Sequelize.STRING

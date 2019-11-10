@@ -18,6 +18,10 @@ router.get('/json', async (ctx, next) => {
   }
 })
 
-router.get('/admin', Users.listAll)
+router.get('/login', Users.login)
+router.post('/login', Users.loginIn)
+router.get('/drop', Users.dropTable)
+
+router.post('/register', Users.register)
 
 module.exports = router
